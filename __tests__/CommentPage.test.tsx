@@ -10,9 +10,10 @@ import CommentPage from '../pages/comment-page'
 import 'setImmediate'
 
 const server = setupServer(
-  rest.get(
-    'https://jsonplaceholder.typicode.com/comments?_limit=10',
-    (req, res, ctx) => {
+  rest.get('https://jsonplaceholder.typicode.com/comments', (req, res, ctx) => {
+    const query = req.url.searchParams
+    const _limit = query.get('_limit')
+    if (_limit === '10') {
       return res(
         ctx.status(200),
         ctx.json([
@@ -33,7 +34,7 @@ const server = setupServer(
         ])
       )
     }
-  )
+  })
 )
 beforeAll(() => server.listen())
 afterEach(() => {
@@ -52,12 +53,16 @@ describe('Comment page with useSWR / Success+Error', () => {
     expect(await screen.findByText('1: test body a')).toBeInTheDocument()
     expect(screen.getByText('2: test body b')).toBeInTheDocument()
   })
-  it('Shoukd render Error text when fetch failed', async () => {
+  it('Should render Error text when fetch failed', async () => {
     server.use(
       rest.get(
-        'https://jsonplaceholder.typicode.com/comments?_limit=10',
+        'https://jsonplaceholder.typicode.com/comments',
         (req, res, ctx) => {
-          return res(ctx.status(400))
+          const query = req.url.searchParams
+          const _limit = query.get('_limit')
+          if (_limit === '10') {
+            return res(ctx.status(400))
+          }
         }
       )
     )
