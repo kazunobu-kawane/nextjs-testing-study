@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event'
 import { StateProvider } from '../context/StateProvider'
 import ContextA from '../components/ContextA'
 import ContextB from '../components/ContextB'
-import 'setImmediate'
+import 'setimmediate'
 
 describe('Global state management (useContext)', () => {
   it('Should change the toggle state globally', () => {

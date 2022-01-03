@@ -7,7 +7,7 @@ import { SWRConfig } from 'swr'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import CommentPage from '../pages/comment-page'
-import 'setImmediate'
+import 'setimmediate'
 
 const server = setupServer(
   rest.get('https://jsonplaceholder.typicode.com/comments', (req, res, ctx) => {
