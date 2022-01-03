@@ -1,6 +1,6 @@
 /**
- * * @jest-environment jsdom
- * */
+ * @jest-environment jsdom
+ */
 import { render, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { getPage } from 'next-page-tester'
@@ -8,7 +8,6 @@ import { initTestHelpers } from 'next-page-tester'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import 'setimmediate'
-import BlogPage from '../pages/blog-page'
 
 initTestHelpers()
 

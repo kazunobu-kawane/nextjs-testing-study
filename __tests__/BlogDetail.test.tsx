@@ -1,14 +1,14 @@
 /**
- * * @jest-environment jsdom
- * */
+ * @jest-environment jsdom
+ */
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen, cleanup } from '@testing-library/react'
 import { getPage } from 'next-page-tester'
 import { initTestHelpers } from 'next-page-tester'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import 'setimmediate'
 import userEvent from '@testing-library/user-event'
+import 'setimmediate'
 
 initTestHelpers()
 
@@ -78,7 +78,6 @@ describe('Blog detail page', () => {
     render(page)
     expect(await screen.findByText('dummy title 1')).toBeInTheDocument()
     expect(screen.getByText('dummy body 1')).toBeInTheDocument()
-    // screen.debug()
   })
   it('Should render detailed content of ID 2', async () => {
     const { page } = await getPage({
@@ -87,7 +86,6 @@ describe('Blog detail page', () => {
     render(page)
     expect(await screen.findByText('dummy title 2')).toBeInTheDocument()
     expect(screen.getByText('dummy body 2')).toBeInTheDocument()
-    // screen.debug()
   })
   it('Should route back to blog-page from detail page', async () => {
     const { page } = await getPage({
